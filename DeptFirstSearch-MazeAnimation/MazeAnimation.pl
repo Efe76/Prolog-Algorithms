@@ -1,3 +1,31 @@
+% Example output of 2 steps for a 5x5 grid, after final step "z" should be right bottom of the grid
+% (It looks better in the terminal, just use query -> ?- solve_depthfirst_cyclefree(1/1, Path), animate(Path). )
+% +---+---+---+---+---+
+% | z |   |   |||||||||
+% +---+---+---+---+---+
+% |||||   |   |   |   |
+% +---+---+---+---+---+
+% |   |   |   |||||||||
+% +---+---+---+---+---+
+% |   |||||   |   |   |
+% +---+---+---+---+---+
+% |   |   |   |||||   |
+% +---+---+---+---+---+
+
+
+% +---+---+---+---+---+
+% |   | z |   |||||||||
+% +---+---+---+---+---+
+% |||||   |   |   |   |
+% +---+---+---+---+---+
+% |   |   |   |||||||||
+% +---+---+---+---+---+
+% |   |||||   |   |   |
+% +---+---+---+---+---+
+% |   |   |   |||||   |
+% +---+---+---+---+---+
+
+
 % Grid of the maze, "w" = White and "b" = Black. White is an open space, Black is a wall/obstacle
 % The grid can be changed to whatever u want, just make sure it is a square so 5/5, 6/6 etc.
 % The animation work on "all" grids.
@@ -77,6 +105,30 @@ move_cyclefree(Visited, Node, NextNode) :-
     move(Node, NextNode),
     \+ member(NextNode, Visited). % Check if the node about to move on not already visited. Protects us from infintie looop
 
+
+% ?- solve_depthfirst_cyclefree(1/1, Path), animate(Path).
+% The following "screenshot" shows the situation at the end of the animation:
+% +---+---+---+---+---+---+---+---+---+---+
+% |   |   |   |||||||||   |   |   |   |||||
+% +---+---+---+---+---+---+---+---+---+---+
+% |||||   |   |   |   |   |||||||||||||||||
+% +---+---+---+---+---+---+---+---+---+---+
+% |   |   |   |||||||||   |||||   |   |   |
+% +---+---+---+---+---+---+---+---+---+---+
+% |   |||||   |   |   |   |   |   |||||   |
+% +---+---+---+---+---+---+---+---+---+---+
+% |   |   |   |||||   |   |||||   |||||   |
+% +---+---+---+---+---+---+---+---+---+---+
+% |||||||||||||||||   |   |||||   |||||   |
+% +---+---+---+---+---+---+---+---+---+---+
+% |   |||||   |   |   |   |||||||||||||||||
+% +---+---+---+---+---+---+---+---+---+---+
+% |   |||||   |||||||||||||||||   |   |||||
+% +---+---+---+---+---+---+---+---+---+---+
+% |   |||||   |   |   |   |||||   |   |||||
+% +---+---+---+---+---+---+---+---+---+---+
+% |   |   |   |||||||||   |   |   |   | z |
+% +---+---+---+---+---+---+---+---+---+---+
 
 % Go up and make sure grid, has has a reachable goal
 animate([H|T]) :-
